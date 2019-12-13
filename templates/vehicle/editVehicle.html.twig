@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}- Редактиране на автомобил{% endblock %}
+
+{% block body %}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="{{ path('garage_dashboard') }}">Начало</a>
+        </li>
+        <li class="breadcrumb-item active">Редакция на автомобил</li>
+    </ol>
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+    <div class="card mx-auto mt-5">
+        <div class="card-header">Редактиране на автомобил</div>
+        <div class="card-body">
+            {{ form_start(form) }}
+            <div class="form-row mb-2">
+                <div class="col-md-3">
+                    {{ form_row(form.plateNumber) }}
+                </div>
+                <div class="col-md-3">
+                    {{ form_row(form.carMake) }}
+                </div>
+                <div class="col-md-3">
+                    {{ form_row(form.carModel) }}
+                </div>
+                <div class="col-md-3">
+                    {{ form_row(form.carYear) }}
+                </div>
+            </div>
+            <div class="form-row mb-2">
+                <div class="col-md-6">
+                    {{ form_row(form.vinNumber) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(form.engineNumber) }}
+                </div>
+            </div>
+            <div class="form-row mb-2">
+                <div class="col-md-6">
+                    {{ form_row(form.carOwner) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(form.personInCharge) }}
+                </div>
+            </div>
+        </div>
+        <div class="form-row mb-2">
+            <div class="col-md-6 text-center">
+                <button class="btn btn-primary" type="submit">Редактирай</button>
+            </div>
+            <div class="col-md-6 text-center">
+                <a href="{{ path('list_vehicles') }}" class="btn btn-danger">Откажи</a>
+            </div>
+        </div>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

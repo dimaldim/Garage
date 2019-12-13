@@ -1,0 +1,104 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}- Всички автомобили{% endblock %}
+
+{% block stylesheets %}
+    <link href="{{ asset('assets/vendor/datatables/dataTables.bootstrap4.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/datatables/responsive.dataTables.min.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="{{ path('garage_dashboard') }}">Начало</a>
+        </li>
+        <li class="breadcrumb-item active">Всички автомобили</li>
+    </ol>
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+    <div class="card mb-3">
+        <div class="card-header">
+            <i class="fas fa-table"></i>
+            Всички автомобили
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="allVehiclesTable" width="100%" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Рег. номер</th>
+                        <th>Марка</th>
+                        <th>Модел</th>
+                        <th>#</th>
+                    </tr>
+                    </thead>
+                    <tfoot>
+                    <tr>
+                        <th>#</th>
+                        <th>Рег. номер</th>
+                        <th>Марка</th>
+                        <th>Модел</th>
+                        <th>#</th>
+                    </tr>
+                    </tfoot>
+                    <tbody>
+                    {% for vehicle in vehicles %}
+                        <tr>
+                            <td>{{ vehicle.id }}</td>
+                            <td>{{ vehicle.plateNumber }}</td>
+                            <td>{{ vehicle.carMake }}</td>
+                            <td>{{ vehicle.carModel }}</td>
+                            <td class="list-vehicles-actions">
+                                <a href="{{ path('edit_vehicle', {'id': vehicle.id }) }}"
+                                   class="btn btn-labeled btn-info">
+                                    <span class="btn-label"><i class="fa fa-edit"></i></span>Редактирай
+                                </a>
+                                <a href="{{ path('delete_vehicle', {'id': vehicle.id }) }}"
+                                   class="btn btn-labeled btn-danger">
+                                    <span class="btn-label"><i class="fas fa-trash"></i></span>Изтрий
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('assets/vendor/datatables/jquery.dataTables.js') }}"></script>
+    <script src="{{ asset('assets/vendor/datatables/dataTables.bootstrap4.js') }}"></script>
+    <script src="{{ asset('assets/vendor/datatables/dataTables.responsive.min.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            $('#allVehiclesTable').DataTable(
+                {
+                    responsive: true,
+                    language: {
+                        "sProcessing": "Обработка на резултатите...",
+                        "sLengthMenu": "Показване на _MENU_ резултата",
+                        "sZeroRecords": "Няма намерени резултати",
+                        "sInfo": "Показване на резултати от _START_ до _END_ от общо _TOTAL_",
+                        "sInfoEmpty": "Показване на резултати от 0 до 0 от общо 0",
+                        "sInfoFiltered": "(филтрирани от общо _MAX_ резултата)",
+                        "sInfoPostFix": "",
+                        "sSearch": "Търсене:",
+                        "sUrl": "",
+                        "oPaginate": {
+                            "sFirst": "Първа",
+                            "sPrevious": "Предишна",
+                            "sNext": "Следваща",
+                            "sLast": "Последна"
+                        }
+                    }
+                }
+            );
+        });
+
+    </script>
+{% endblock %}

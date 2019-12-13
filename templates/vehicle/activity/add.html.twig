@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}- Добавяне на дейност на автомобил{% endblock %}
+
+{% block body %}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="{{ path('garage_dashboard') }}">Начало</a>
+        </li>
+        <li class="breadcrumb-item active">Добавяне на дейност на автомобил</li>
+    </ol>
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+    {% if not vehicle %}
+        <div class="alert alert-danger">
+            Моля изберете автомобил за работа!
+        </div>
+    {% else %}
+        <div class="card mx-auto mt-5">
+            <div class="card-header">Добавяне на дейност на автомобил</div>
+            <div class="card-body">
+                {{ form_start(form) }}
+                <div class="form-row mb-2">
+                    <div class="col-md-6">
+                        {{ form_row(form.createdAt) }}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form_row(form.odometer) }}
+                    </div>
+                </div>
+                <div class="form-row mb-2">
+                    <div class="col-md-12">
+                        {{ form_row(form.activity) }}
+                    </div>
+                </div>
+                <div class="form-row mb-2">
+                    <div class="col-md-6">
+                        {{ form_row(form.work) }}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form_row(form.serviz) }}
+                    </div>
+                </div>
+                <div class="form-row mb-2">
+                    <div class="col-md-6">
+                        {{ form_row(form.parts) }}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form_row(form.supplier) }}
+                    </div>
+                </div>
+                <div class="form-row mb-2">
+                    <div class="col-md-12">
+                        {{ form_row(form.description) }}
+                    </div>
+                </div>
+                <div class="form-row mb-2">
+                    <div class="col-md-6 text-center">
+                        <button class="btn btn-primary" type="submit">Добави</button>
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <a href="{{ path('garage_dashboard') }}" class="btn btn-danger">Откажи</a>
+                    </div>
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

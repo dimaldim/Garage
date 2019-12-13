@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}- Изтриване на автомобил{% endblock %}
+
+{% block body %}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="{{ path('garage_dashboard') }}">Начало</a>
+        </li>
+        <li class="breadcrumb-item active">Изтриване на автомобил</li>
+    </ol>
+    <div class="card mx-auto mt-5">
+        <div class="card-header">Изтриване на автомобил</div>
+        <div class="card-body">
+            {{ form_start(form) }}
+            <div class="form-row mb-2">
+                <div class="col-md-3">
+                    {{ form_row(form.plateNumber, {'attr': {'readonly':'readonly'}}) }}
+                </div>
+                <div class="col-md-3">
+                    {{ form_row(form.carMake, {'attr': {'readonly':'readonly'}}) }}
+                </div>
+                <div class="col-md-3">
+                    {{ form_row(form.carModel, {'attr': {'readonly':'readonly'}}) }}
+                </div>
+                <div class="col-md-3">
+                    {{ form_row(form.carYear, {'attr': {'readonly':'readonly'}}) }}
+                </div>
+            </div>
+            <div class="form-row mb-2">
+                <div class="col-md-6">
+                    {{ form_row(form.vinNumber, {'attr': {'readonly':'readonly'}}) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(form.engineNumber, {'attr': {'readonly':'readonly'}}) }}
+                </div>
+            </div>
+            <div class="form-row mb-2">
+                <div class="col-md-6">
+                    {{ form_row(form.carOwner, {'attr': {'readonly':'readonly'}}) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(form.personInCharge, {'attr': {'readonly':'readonly'}}) }}
+                </div>
+            </div>
+        </div>
+        <div class="form-row mb-2">
+            <div class="col-md-6 text-center">
+                <button class="btn btn-primary" type="submit">Изтрий</button>
+            </div>
+            <div class="col-md-6 text-center">
+                <a href="{{ path('list_vehicles') }}" class="btn btn-danger">Откажи</a>
+            </div>
+        </div>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

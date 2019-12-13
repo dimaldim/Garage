@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}- Начало{% endblock %}
+
+{% block stylesheets %}
+    <link href="{{ asset('assets/vendor/datatables/dataTables.bootstrap4.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/datatables/responsive.dataTables.min.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active">
+            Начало
+        </li>
+    </ol>
+    {% if not choosen_vehicle %}
+        {{ include('/dashboard/list.html.twig') }}
+    {% else %}
+        {{ render(controller('App\\Controller\\Main\\GarageDashboardController::vehicleDashboard')) }}
+    {% endif %}
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('assets/vendor/datatables/jquery.dataTables.js') }}"></script>
+    <script src="{{ asset('assets/vendor/datatables/dataTables.bootstrap4.js') }}"></script>
+    <script src="{{ asset('assets/vendor/datatables/dataTables.responsive.min.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            $('.clickable-row').click(function () {
+                window.location = $(this).data('href');
+            });
+
+            $('#allVehiclesTable').DataTable(
+                {
+                    responsive: true,
+                    language: {
+                        "sProcessing": "Обработка на резултатите...",
+                        "sLengthMenu": "Показване на _MENU_ резултата",
+                        "sZeroRecords": "Няма намерени резултати",
+                        "sInfo": "Показване на резултати от _START_ до _END_ от общо _TOTAL_",
+                        "sInfoEmpty": "Показване на резултати от 0 до 0 от общо 0",
+                        "sInfoFiltered": "(филтрирани от общо _MAX_ резултата)",
+                        "sInfoPostFix": "",
+                        "sSearch": "Търсене:",
+                        "sUrl": "",
+                        "oPaginate": {
+                            "sFirst": "Първа",
+                            "sPrevious": "Предишна",
+                            "sNext": "Следваща",
+                            "sLast": "Последна"
+                        }
+                    }
+                }
+            );
+        });
+
+    </script>
+{% endblock %}

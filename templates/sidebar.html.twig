@@ -14,9 +14,12 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="vehiclesDropdown">
                 <a class="dropdown-item" href="{{ path('add_vehicle') }}">Добавяне на автомобил</a>
-                <a class="dropdown-item" href="#">Редакция на автомобил</a>
-                <a class="dropdown-item" href="#">Изтриване на автомобил</a>
-                <a class="dropdown-item" href="#">Смяна на км/м/ч</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{{ path('list_vehicles') }}">Редакция на автомобил</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{{ path('list_vehicles') }}">Изтриване на автомобил</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{{ path('vehicle_odometer') }}">Смяна на км/м/ч</a>
             </div>
         </li>
         <li class="nav-item dropdown">
@@ -26,9 +29,11 @@
                 <span>Дейности</span>
             </a>
             <div class="dropdown-menu" aria-labelledby="activitiesDropdown">
-                <a class="dropdown-item" href="#">Добавяне на дейност</a>
-                <a class="dropdown-item" href="#">Редакция на дейност</a>
-                <a class="dropdown-item" href="#">Изтриване на дейност</a>
+                <a class="dropdown-item" href="{{ path('add_vehicle_activity') }}">Добавяне на дейност</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{{ path('list_vehicle_activities') }}">Редакция на дейност</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{{ path('list_vehicle_activities') }}">Изтриване на дейност</a>
             </div>
         </li>
         <li class="nav-item dropdown">
@@ -39,8 +44,11 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="tasksDropdown">
                 <a class="dropdown-item" href="#">Добавяне на задача</a>
+                <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#">Редакция на задача</a>
+                <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#">Изтриване на задача</a>
+                <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#">Задача=>Дейност</a>
             </div>
         </li>
@@ -52,17 +60,33 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="tasksDropdown">
                 <a class="dropdown-item" href="#">Проверка административна дейност</a>
+                <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#">Проверка техническа дейност</a>
+                <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#">Извършени дейности на машина</a>
+                <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#">Извършени дейности на всички машини</a>
+                <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#">Разходи за период</a>
+            </div>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="activitiesDropdown" role="button" data-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-fw fa-folder"></i>
+                <span>Видове дейности</span>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="activitiesDropdown">
+                <a class="dropdown-item" href="{{ path('add_activity') }}">Добавяне на дейност</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{{ path('list_activities') }}">Изтриване на дейност</a>
             </div>
         </li>
     {% else %}
         <li class="nav-item active">
             <a class="nav-link" href="{{ path('home') }}">
                 <i class="fas fa-fw fa-home"></i>
-                <span>Home</span>
+                <span>Начало</span>
             </a>
         </li>
     {% endif %}
